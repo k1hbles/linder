@@ -143,6 +143,8 @@ function Admin({ps,ms,onRun,onClear,onBack,onRefresh,ld,excluded,onToggleExclude
   const [editUser,setEditUser]=useState(null);
   const [editGF,setEditGF]=useState("");
   const [editFact,setEditFact]=useState("");
+  const [resetConfirm,setResetConfirm]=useState(false);
+  const [resetText,setResetText]=useState("");
   const mut=ms.filter(m=>m.status1==="accepted"&&m.status2==="accepted").length;
   const matchedPeople=new Set();ms.forEach(m=>{matchedPeople.add(m.user1);matchedPeople.add(m.user2)});
   const activePs=ps.filter(p=>!excluded.has(p.id));
@@ -189,7 +191,13 @@ function Admin({ps,ms,onRun,onClear,onBack,onRefresh,ld,excluded,onToggleExclude
         <div style={{display:"flex",gap:4,flexShrink:0}}><button onClick={()=>onLoginAs(p)} style={{background:T.sky,color:"#fff",border:"none",borderRadius:8,padding:"5px 10px",fontFamily:F,fontSize:11,fontWeight:800,cursor:"pointer"}}>View</button><button onClick={()=>onToggleExclude(p.id)} style={{background:T.mint,color:"#fff",border:"none",borderRadius:8,padding:"5px 10px",fontFamily:F,fontSize:11,fontWeight:800,cursor:"pointer"}}>Include</button></div>
       </div>
     </div>)}</>}
-    {ps.length>0&&<Btn v="danger" onClick={onClear} style={{marginTop:16}}>Reset all data</Btn>}
+    {ps.length>0&&!resetConfirm&&<Btn v="danger" onClick={()=>setResetConfirm(true)} style={{marginTop:16}}>Reset all data</Btn>}
+    {resetConfirm&&<div style={{background:"#FFF0F0",borderRadius:14,padding:16,marginTop:16,border:"2px solid #E5434440"}}>
+      <p style={{fontFamily:F,fontSize:14,fontWeight:800,color:"#E54",margin:"0 0 4px"}}>This will permanently delete ALL profiles and matches.</p>
+      <p style={{fontFamily:F,fontSize:12,color:T.textSec,fontWeight:600,margin:"0 0 12px"}}>Type <strong>RESET</strong> to confirm.</p>
+      <input value={resetText} onChange={e=>setResetText(e.target.value)} placeholder="Type RESET" style={{width:"100%",padding:12,borderRadius:10,border:"2px solid #E5434440",background:T.card,color:T.text,fontFamily:F,fontSize:15,fontWeight:700,outline:"none",textAlign:"center",marginBottom:10,boxSizing:"border-box"}}/>
+      <div style={{display:"flex",gap:10}}><Btn v="secondary" onClick={()=>{setResetConfirm(false);setResetText("")}} style={{flex:1}}>Cancel</Btn><Btn v="danger" onClick={()=>{if(resetText==="RESET"){onClear();setResetConfirm(false);setResetText("")}}} disabled={resetText!=="RESET"} style={{flex:1}}>Delete everything</Btn></div>
+    </div>}
     {editUser&&<div onClick={e=>{if(e.target===e.currentTarget)setEditUser(null)}} style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.4)",display:"flex",alignItems:"center",justifyContent:"center",zIndex:100,padding:20}}>
       <div style={{background:T.card,borderRadius:18,padding:20,maxWidth:400,width:"100%",border:`2px solid ${T.border}`,boxShadow:`0 4px 0 ${T.border}`}}>
         <h3 style={{fontFamily:F,fontSize:18,fontWeight:800,color:T.text,margin:"0 0 4px"}}>Edit {editUser.name}</h3>
