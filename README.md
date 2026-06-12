@@ -1,3 +1,7 @@
+Fellow Les Roches friends, feel free to fork this project. This is an open-sourced linder code. 
+
+
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
