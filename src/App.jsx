@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 
-const SUPABASE_URL = "https://kdcojhlglxkapdtwsofh.supabase.co";
-const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtkY29qaGxnbHhrYXBkdHdzb2ZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA4NDY3MTEsImV4cCI6MjA4NjQyMjcxMX0.zKE3Tn5CknwVkC2AZ9hsrw_TiyEnU89FQ4RXUimO94k";
+const SUPABASE_URL = ""
+const SUPABASE_ANON = "";
 const ADMIN_PW = "linder2026";
 const REVEAL = "Matches revealed soon";
 
