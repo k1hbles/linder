@@ -1,5 +1,4 @@
-Fellow Les Roches friends, feel free to fork this project. This is an open-sourced linder code. 
-
+Fellow Les Roches friends, feel free to fork this project. This is an open-sourced linder code. Ps - The jsx code is vibe coded. But the CSS was done by me. Hence why jsx file looks so messy.
 
 
 # React + Vite
